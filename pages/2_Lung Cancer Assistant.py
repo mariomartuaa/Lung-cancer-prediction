@@ -12,7 +12,7 @@ st.set_page_config(
     page_icon="🤖"
 )
 
-os.environ["GOOGLE_API_KEY"] = "AIzaSyAwPC_j6kvZ25c3SyDWFbNHjWF8-KQQAns"
+os.environ["GOOGLE_API_KEY"] = st.secrets["GOOGLE_API_KEY"]
 
 @st.cache_resource
 def load_vectorstore():
@@ -94,4 +94,5 @@ if prompt_text := st.chat_input("Ask your question about lung cancer..."):
         st.markdown(response)
 
     # Simpan jawaban ke history
+
     st.session_state.messages.append({"role": "assistant", "content": response})
