@@ -17,7 +17,7 @@ os.environ["GOOGLE_API_KEY"] = st.secrets["GOOGLE_API_KEY"]
 @st.cache_resource
 def load_vectorstore():
     embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L12-v2")
-    vectorstore = FAISS.load_local("faiss_lung_cancer", embeddings, allow_dangerous_deserialization=True,k=3)
+    vectorstore = FAISS.load_local("faiss_lung_cancer", embeddings, allow_dangerous_deserialization=True)
     return vectorstore
 
 vectorstore = load_vectorstore()
@@ -96,4 +96,5 @@ if prompt_text := st.chat_input("Ask your question about lung cancer..."):
     # Simpan jawaban ke history
 
     st.session_state.messages.append({"role": "assistant", "content": response})
+
 
