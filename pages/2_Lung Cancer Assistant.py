@@ -21,7 +21,7 @@ def load_vectorstore():
     return vectorstore
 
 vectorstore = load_vectorstore()
-retriever = vectorstore.as_retriever()
+retriever = vectorstore.as_retriever(search_type="mmr", search_kwargs={"k": 3, "fetch_k": 10})
 
 template = """
 You are an expert assistant with deep knowledge of the document.
